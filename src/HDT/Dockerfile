@@ -14,7 +14,7 @@ ENV QUERY subjectLookup/queries-sel-10-e0.2.txt
 WORKDIR /opt/bear
 CMD /opt/bear/query-$POLICY-$CATEGORY \
     -d /var/data/dataset/$POLICY/ \
-    -l 88 \
+    -l 1298 \
     -t spo \
     -i /var/data/queries/$QUERY\
     -o /var/data/output/time-hdt-$POLICY-$CATEGORY-$(echo $QUERY | sed "s/\//-/g").txt
