@@ -6,7 +6,7 @@ mkdir -p $(pwd)/bear-b/day/ic/queries/
 (cd $(pwd)/bear-b/day/ic/queries/ && wget https://aic.ai.wu.ac.at/qadlod/bear/BEAR_B/Queries/p/p.txt && wget https://aic.ai.wu.ac.at/qadlod/bear/BEAR_B/Queries/po/po.txt)
 for f in $(pwd)/bear-b/day/ic/nt/*.nt
 do
-	input="$(pwd)/bear-b/day/ic/nt/$(basename $f)"
-	output=$(pwd)/bear-b/day/ic/hdt/$(basename $f .nt)
-	docker run -it --rm -v $inut:/input -v $output/:/output rfdhdt/hdt-cpp rdf2hdt -i $input $output
+	input="/input/$(basename $f)"
+	output=/output/$(expr $(basename $f .nt) + 0).hdt
+	docker run -it --rm -v $(pwd)/bear-b/day/ic/nt/:/input -v $(pwd)/bear-b/day/ic/hdt/:/output rfdhdt/hdt-cpp rdf2hdt -i $input $output
 done
