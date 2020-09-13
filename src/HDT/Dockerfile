@@ -4,7 +4,7 @@ ADD tools /tmp/tools
 ADD make-all.sh /tmp/make-all.sh
 
 RUN mkdir /opt/bear
-RUN cd /opt/hdt/hdt-lib && /tmp/make-all.sh
+RUN cd /usr/local/src/hdt-cpp/hdt-lib && /tmp/make-all.sh
 
 ENV POLICY ic
 ENV CATEGORY mat
