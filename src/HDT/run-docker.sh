@@ -14,7 +14,7 @@ docker run -it --rm \
     -e POLICY="$policy" \
     -e CATEGORY="$category" \
     -e QUERY="$query" \
-    -v $(pwd)/bear-b/day/ic/hdt/:/var/data/dataset/ \
+    -v $(pwd)/bear-b/day/ic/hdt/:/var/data/dataset/ic/ \
     -v $(pwd)/bear-b/day/ic/queries:/var/data/queries/ \
     -v $(pwd)/bear-b/day/ic/output/:/var/data/output/ \
     bear-hdt
