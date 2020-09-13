@@ -8,5 +8,5 @@ for f in $(pwd)/bear-b/day/ic/nt/*.nt
 do
 	input="$(pwd)/bear-b/day/ic/nt/$(basename $f)"
 	output=$(pwd)/bear-b/day/ic/hdt/$(basename $f .nt)
-	docker run -it --rm -v $(pwd)/bear-b/day/ic/nt/:/input $(pwd)/bear-b/day/ic/hdt/:/output  rfdhdt/hdt-cpp rdf2hdt -i $input $output
+	docker run -it --rm -v $(pwd)/bear-b/day/ic/nt/:/input -v $(pwd)/bear-b/day/ic/hdt/:/output rfdhdt/hdt-cpp rdf2hdt -i $input $output
 done

@@ -14,3 +14,5 @@ Please compile and execute the tools with the HDT-C++ library: https://github.co
 | -l `<arg>`              |Limit up to the *number* of versions|
 | -o `<arg>`              | Output file with Results|
 | -t `<arg>`              | Type of query: subject (s) &#124; predicate (p) &#124; object (o)|
+
+
