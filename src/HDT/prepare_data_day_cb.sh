@@ -7,7 +7,7 @@ mkdir -p $(pwd)/bear-b/day/cb/queries/
 for f in $(pwd)/bear-b/day/cb/nt/data-added*.nt
 do
 	input="/input/$(basename $f)"
-	out_file=${$(basename $f .nt)#"data-added"}
-	output=/output/$out_file.add.hdt
+	out_file=$(basename $f .nt)
+	output=/output/${out_file#"data-added"}.add.hdt
 	docker run -it --rm -v $(pwd)/bear-b/day/ic/nt/:/input -v $(pwd)/bear-b/day/ic/hdt/:/output rfdhdt/hdt-cpp rdf2hdt -i $input $output
 done
