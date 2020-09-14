@@ -10,5 +10,13 @@ do
 	out_file=$(basename $f .nt)
 	out_file_stripped=${out_file#"data-added_"}
 	output=/output/${out_file_stripped%-*}.add.hdt
-	docker run -it --rm -v $(pwd)/bear-b/day/ic/nt/:/input -v $(pwd)/bear-b/day/ic/hdt/:/output rfdhdt/hdt-cpp rdf2hdt -i $input $output
+	docker run -it --rm -v $(pwd)/bear-b/day/cb/nt/:/input -v $(pwd)/bear-b/day/cb/hdt/:/output rfdhdt/hdt-cpp rdf2hdt -i $input $output
+done
+for f in $(pwd)/bear-b/day/cb/nt/data-deleted*.nt
+do
+	input="/input/$(basename $f)"
+	out_file=$(basename $f .nt)
+	out_file_stripped=${out_file#"data-deleted_"}
+	output=/output/${out_file_stripped%-*}.del.hdt
+	docker run -it --rm -v $(pwd)/bear-b/day/cb/nt/:/input -v $(pwd)/bear-b/day/cb/hdt/:/output rfdhdt/hdt-cpp rdf2hdt -i $input $output
 done
