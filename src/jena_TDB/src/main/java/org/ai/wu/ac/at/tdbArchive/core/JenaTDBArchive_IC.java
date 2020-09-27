@@ -199,6 +199,7 @@ public class JenaTDBArchive_IC implements JenaTDBArchive {
 			vStats.put(i, new DescriptiveStatistics());
 		}
 
+		ArrayList<String> queries = new ArrayList<String>();
 		while ((line = br.readLine()) != null) {
 			String[] parts = line.split(" ");
 			// String element = parts[0]; //we take all parts in order to process all TP patterns
@@ -210,32 +211,35 @@ public class JenaTDBArchive_IC implements JenaTDBArchive {
 
 			//role has to be spo all time since query file has 4 columns
 			String queryString = QueryUtils.createLookupQuery(rol, parts);
-            int limit = Integer.MAX_VALUE;
-			//System.out.println("queryString:" + queryString);
-			Map<Integer, ArrayList<String>> solutions = new HashMap<Integer, ArrayList<String>>();
-			for (int i = 0; i < TOTALVERSIONS; i++) {
-				System.out.println("Query at version " + i);
-
-				Query query = QueryFactory.create(queryString);
-				System.out.println(queryString);
-				long startTime = System.currentTimeMillis();
-
-				ArrayList<String> materializeQueryResults = materializeQuery(i, query, limit);
-				solutions.put(i, materializeQueryResults);
-
-
-				long endTime = System.currentTimeMillis();
-				System.out.println(materializeQueryResults.size());
-				System.out.println(startTime);
-				System.out.println(endTime);
-				System.out.println("Time:" + (endTime - startTime));
-				vStats.get(i).addValue((endTime - startTime));
-
-			}
-			ret.add(solutions);
-
+			queries.add(queryString);
 		}
 		br.close();
+            int limit = Integer.MAX_VALUE;
+			//System.out.println("queryString:" + queryString);
+
+
+
+
+			for (int i = 0; i < TOTALVERSIONS; i++) {
+				Map<Integer, ArrayList<String>> solutions = new HashMap<Integer, ArrayList<String>>();
+				System.out.println("Query at version " + i);
+
+				for (int j = 0; j < queries.size(); j++) {
+
+					Query query = QueryFactory.create(queries.get(j));
+					long startTime = System.currentTimeMillis();
+					ArrayList<String> materializeQueryResults = materializeQuery(i, query, limit);
+					solutions.put(j, materializeQueryResults);
+					long endTime = System.currentTimeMillis();
+					System.out.println(materializeQueryResults.size());
+					System.out.println("Time:" + (endTime - startTime));
+					vStats.get(i).addValue((endTime - startTime));
+
+				}
+				ret.add(solutions);
+			}
+
+
 
 		if (measureTime) {
 			// PrintWriter pw = new PrintWriter(new File(outputDIR + "/res-dynmat-" + inputFile.getName()));
