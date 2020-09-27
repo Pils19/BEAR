@@ -95,7 +95,7 @@ public class JenaTDBArchive_IC implements JenaTDBArchive {
 	 */
 	public ArrayList<String> matQuery(int version, String queryString) throws InterruptedException, ExecutionException {
 		Query query = QueryFactory.create(queryString);
-
+		warmup();
 		long startTime = System.currentTimeMillis();
 
 		ArrayList<String> ret = materializeQuery(version, query, Integer.MAX_VALUE);

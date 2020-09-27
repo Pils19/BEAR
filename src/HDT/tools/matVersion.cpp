@@ -109,33 +109,6 @@ int main(int argc, char *argv[]) {
 
 	}
 
-	cout << "WARMUP... " << endl;
-	for (int i = 0; i < numVersions; i++) {
-		// Enumerate all different predicates
-		cout << "Dataset " << (i + 1) << " contains "
-				<< HDTversions[i]->getDictionary()->getNpredicates()
-				<< " predicates." << endl;
-
-		// Enumerate all triples matching a pattern ("" means any)
-		IteratorTripleString *it = HDTversions[i]->search("", "", "");
-		int count = 0;
-		while (it->hasNext() && count < 100) {
-			TripleString *triple = it->next();
-			//cout << "Result Warmup: " << triple->getSubject() << ", " << triple->getPredicate() << ", " << triple->getObject() << endl;
-			count++;
-		}
-		delete it; // Remember to delete iterator to avoid memory leaks!
-
-		/*IteratorUCharString *itPred = HDTversions[i]->getDictionary()->getPredicates();
-		 while(itPred->hasNext()) {
-		 unsigned char *str = itPred->next(); // Warning this pointer is only valid until next call to next();
-		 cout << str << endl;
-		 itPred->freeStr(str);
-		 }
-		 delete itPred;  // Remember to delete iterator to avoid memory leaks!
-		 */
-	}
-	cout << "... WARMUP finished!" << endl;
 
 	if (type == "null") {
 		cerr << "[ERROR] Please provide a type of query (-t [s,p,o])" << endl;
