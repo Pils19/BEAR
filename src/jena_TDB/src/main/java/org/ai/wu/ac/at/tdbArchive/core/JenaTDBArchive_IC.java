@@ -217,7 +217,7 @@ public class JenaTDBArchive_IC implements JenaTDBArchive {
 				System.out.println("Query at version " + i);
 
 				Query query = QueryFactory.create(queryString);
-				System.out.println(query.toString());
+				System.out.println(queryString);
 				long startTime = System.currentTimeMillis();
 
 				ArrayList<String> materializeQueryResults = materializeQuery(i, query, limit);
