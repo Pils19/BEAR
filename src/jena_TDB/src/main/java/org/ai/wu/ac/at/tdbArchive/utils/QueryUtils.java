@@ -102,7 +102,7 @@ public final class QueryUtils {
 				predicate = "<" + predicate + ">";
 			if (object.startsWith("http"))
 				object = "<" + object + ">";
-			queryString = "SELECT * WHERE { "+subject+" "+predicate+ " " +object+" . }";
+			queryString = "SELECT "+subject+" WHERE { "+subject+" "+predicate+ " " +object+" . }";
 		}
 		else{ //if (qtype==QueryRol.ALL){
 		
