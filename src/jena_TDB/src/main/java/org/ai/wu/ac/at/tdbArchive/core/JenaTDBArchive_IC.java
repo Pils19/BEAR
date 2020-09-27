@@ -220,10 +220,14 @@ public class JenaTDBArchive_IC implements JenaTDBArchive {
 				System.out.println(query.toString());
 				long startTime = System.currentTimeMillis();
 
-				solutions.put(i, materializeQuery(i, query, limit));
+				ArrayList<String> materializeQueryResults = materializeQuery(i, query, limit);
+				solutions.put(i, materializeQueryResults);
 
 
 				long endTime = System.currentTimeMillis();
+				System.out.println(materializeQueryResults.size());
+				System.out.println(startTime);
+				System.out.println(endTime);
 				System.out.println("Time:" + (endTime - startTime));
 				vStats.get(i).addValue((endTime - startTime));
 
