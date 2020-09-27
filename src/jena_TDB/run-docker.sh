@@ -20,7 +20,7 @@ docker run -it --rm \
     -e ROLE="SPO" \
     -e CATEGORY="$category" \
     -e QUERY="$query" \
-    -v $(pwd)/data:/var/data/dataset/ \
+    -v $(pwd)/bear-b/day/tbd/:/var/data/dataset/ \
     -v $(pwd)/queries:/var/data/queries/ \
     -v $(pwd)/output:/var/data/output/ \
     bear-jena
