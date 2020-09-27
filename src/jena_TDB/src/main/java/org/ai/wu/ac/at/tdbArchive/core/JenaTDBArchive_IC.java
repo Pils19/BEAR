@@ -208,8 +208,9 @@ public class JenaTDBArchive_IC implements JenaTDBArchive {
 			 */
 			warmup();
 
+			//role has to be spo all time since query file has 4 columns
 			String queryString = QueryUtils.createLookupQuery(rol, parts);
-            int limit = QueryUtils.getLimit(parts);
+            int limit = Integer.MAX_VALUE;
 			//System.out.println("queryString:" + queryString);
 			Map<Integer, ArrayList<String>> solutions = new HashMap<Integer, ArrayList<String>>();
 			for (int i = 0; i < TOTALVERSIONS; i++) {
