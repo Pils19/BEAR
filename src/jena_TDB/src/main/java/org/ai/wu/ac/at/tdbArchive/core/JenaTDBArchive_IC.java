@@ -214,18 +214,17 @@ public class JenaTDBArchive_IC implements JenaTDBArchive {
 			//System.out.println("queryString:" + queryString);
 			Map<Integer, ArrayList<String>> solutions = new HashMap<Integer, ArrayList<String>>();
 			for (int i = 0; i < TOTALVERSIONS; i++) {
-				// system.out.println("Query at version " + i);
+				System.out.println("Query at version " + i);
 
 				Query query = QueryFactory.create(queryString);
+				System.out.println(query.toString());
 				long startTime = System.currentTimeMillis();
 
-				if (true || !rol.equalsIgnoreCase("SPO"))
-					solutions.put(i, materializeQuery(i, query, limit));
-				else
-					solutions.put(i, materializeASKQuery(i, query));
+				solutions.put(i, materializeQuery(i, query, limit));
+
 
 				long endTime = System.currentTimeMillis();
-				// system.out.println("Time:" + (endTime - startTime));
+				System.out.println("Time:" + (endTime - startTime));
 				vStats.get(i).addValue((endTime - startTime));
 
 			}
